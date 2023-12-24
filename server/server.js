@@ -11,7 +11,7 @@ const app = express()
 const port = 80
 const con = mysql.createConnection({
     host: "localhost",
-    user: 'root',
+    user: 'bacrad',
     password: 'bac89rad',
     database: "christmas_game"
 })
@@ -54,7 +54,7 @@ app.post('/login', (req, res) => {
 })
 
 app.get("/destionations", verifyToken, (req, res) => {
-    const sql = "SELECT d.DestinationID, d.Destinationimage, d.Body, d.Destinationname, IF(t.TourID IS null, 0, COUNT(d.DestinationID)) AS tcount FROM destination d LEFT JOIN tours t ON d.DestinationID = d.DestinationID GROUP BY t.DestinationID ORDER BY tcount DESC;"
+    const sql = "SELECT d.DestinationID, d.Destinationimage, d.Body, d.Destinationname, IF(t.TourID IS null, 0, COUNT(d.DestinationID)) AS tcount FROM destination d LEFT JOIN tours t ON d.DestinationID = d.DestinationID GROUP BY d.DestinationID ORDER BY tcount DESC;"
     con.query(sql, (err, result) => {
         if(err) throw err
 
