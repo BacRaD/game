@@ -9,7 +9,7 @@ import { People } from '../model/people';
 })
 export class ToursService {
 
-  url: string = "http://217.13.111.90"
+  url: string = 'http://217.13.111.90'
   destinations: Destination[] = []
   destination: Destination = new Destination()
   groups: Group[] = []
