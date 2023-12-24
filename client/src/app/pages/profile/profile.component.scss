@@ -1,0 +1,78 @@
+@import '../../scss/colors';
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    background-color: $lighter;
+
+    .title {
+        background-color: $darker;
+        color: $lighter;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 3rem;
+            font-weight: 100;
+        }
+
+        p {
+            letter-spacing: 2px;
+        }
+    }
+
+    ul {
+        padding: 20px 10px;
+        list-style: none;
+        li {
+            background-color: white;
+            margin-bottom: 15px;
+
+            h3 {
+                font-size: 1.5rem;
+                font-weight: 600;
+                background: linear-gradient(to right, $darker, $dark);
+                color: $lighter;
+                padding: 7px 10px;
+            }
+
+            p {
+                margin-left: 20px;
+                padding: 10px;
+                font-size: 1.2rem;
+
+                span {
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        .active {
+            border: 3px solid $darker;
+            background: white;
+            color: $darker;
+
+            h3 {
+                background: $light;
+                color: $darker;
+            }
+        }
+    }
+}
+
+@media(min-width: 900px) {
+    .profile {
+        padding-top: 44px;
+
+        ul {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    }
+}

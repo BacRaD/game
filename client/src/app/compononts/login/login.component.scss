@@ -1,0 +1,36 @@
+@import '../../scss/colors';
+
+.login {
+    width: 100%;
+
+    background-color: $lighter;
+
+    .login-f {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100svh;
+
+        input {
+            width: 100%;
+            font-size: 1.4rem;
+            padding: 5px 0;
+            text-align: center;
+            border: none;
+            margin: 2px;
+        }
+    
+        button {
+            padding: 5px 0;
+            width: 100%;
+            border: none;
+            background-color: $dark;
+            font-size: 1.4rem;
+            color: $lighter;
+            margin-top: 20px;
+        }
+    }
+}

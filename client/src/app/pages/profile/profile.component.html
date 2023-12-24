@@ -1,0 +1,12 @@
+<div class="profile">
+    <div class="title">
+        <h2>{{people.Name}}</h2>
+        <p>{{people.Groupname}} csapat tagja.</p>
+    </div>
+    <ul>
+        <li *ngFor="let x of tours.peoplepoints; index as i"  [ngClass]="x.PeopleID == people.PeopleID ? 'active': ''">
+            <h3>{{x.Name}}</h3>
+            <p><span>{{x.count}}</span> Túrán vett részt és <span>{{x.point}}</span> potnja van.</p>
+        </li>
+    </ul>
+</div>

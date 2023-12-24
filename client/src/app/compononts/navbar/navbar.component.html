@@ -1,0 +1,24 @@
+<div [ngClass]="isOpened ? 'mobile': 'mobile close'" (click)="handleClick()">
+    <ul>
+        <a routerLink=""><img src="assets/img/home.png" alt="home"></a>
+        <a routerLink="destinations"><li>Célpontok</li></a>
+        <a routerLink="groups"><li>Csapat verseny</li></a>
+        <a routerLink="profile"><li>Egyéni verseny</li></a>
+        <a routerLink="manual"><li>Szabályok</li></a>
+        <a routerLink=""><li (click)="logout()">Kijelentkezés</li></a>
+    </ul>
+</div>
+<div class="hamburger" *ngIf="!isOpened">
+    <img src="assets/img/open.png" alt="menu" (click)="handleClick()"> 
+</div>
+
+<div class="desktop">
+    <ul>
+        <a routerLink=""><li>Kezdőoldal</li></a>
+        <a routerLink="destinations"><li>Célpontok</li></a>
+        <a routerLink="groups"><li>Csapat verseny</li></a>
+        <a routerLink="profile"><li>Egyéni verseny</li></a>
+        <a routerLink="manual"><li>Szabályok</li></a>
+        <a routerLink=""><li (click)="logout()">Kijelentkezés</li></a>
+    </ul>
+</div>

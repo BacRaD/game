@@ -1,0 +1,16 @@
+<div class="wrapper" *ngIf="!isOpened">
+    <div class="card" *ngFor="let x of destinations" (click)="getDestination(x.DestinationID)">
+        <h2>{{x.Destinationname}}</h2><h2>{{x.tcount}}</h2>
+    </div>
+</div>
+
+<div class="destination" *ngIf="isOpened">
+    <div class="layer"></div>
+    <img src="assets/img/{{tours.destination.Destinationimage}}" alt="{{tours.destination.Destinationname}}">
+    <h2 >{{tours.destination.Destinationname}}</h2>
+    <p>{{tours.destination.Body}}</p>
+    <div class="images">
+        <img *ngFor="let x of tours.images; index as i" src="assets/tours/{{x}}" alt="image{{i}}">
+    </div>
+    <button (click)="closeDestination()">Vissza</button>
+</div>

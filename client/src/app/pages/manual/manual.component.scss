@@ -1,0 +1,32 @@
+@import '../../scss/colors';
+
+.manual {
+    min-height: 100svh;
+    padding: 70px 30px;
+    background: linear-gradient(to bottom, $lighter, $light, white);
+    max-width: 800px;
+    margin: 0 auto;
+
+    h2 {
+        margin-bottom: 30px;
+        font-size: 2rem;
+        font-weight: 100;
+    }
+
+    ul {
+        margin-left: 10px;
+
+        li {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            line-height: 1.5rem;
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+    .manual {
+        padding: 100px 100px;
+
+    }
+}

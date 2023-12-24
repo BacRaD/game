@@ -1,0 +1,35 @@
+<div class="home-container" *ngIf="!isOpened">
+    <h1>A nagy verseny</h1>
+    <button (click)="openAddTour()">Megcsináltuk!</button>
+</div>
+
+<div class="add-tours" *ngIf="isOpened" (submit)="createTour()">
+    <form action="">
+        <h2>1. Mi volt a célpont?</h2>
+        <select name="tour" (change)="handleDestinationChange($event)">
+            <option  *ngFor="let x of tour.destinations" value="{{x.DestinationID}}">{{x.Destinationname}}</option>
+        </select>
+        <h2>2. Kik vettek részt?</h2>
+
+        <select name="peoples"  (change)="groupNameChange($event)">
+            <option *ngFor="let x of tour.groupsname" value="{{x.GroupID}}">{{x.Groupname}}</option>
+        </select>
+        
+        <div class="peoples-checkbox">
+            <h2 *ngFor="let x of peoples" (click)="pushToPeopleResult(x)"><span class="add">+</span>{{x.Name}}</h2>
+        </div>
+        
+        <ul class="participants">
+            <li *ngFor="let x of currentTour.peoples; index as i">{{i+1}}. {{x.Name}}<span class="remove" (click)="removeFromPeopleResult(x)">-</span></li>
+        </ul>
+
+        <h2>3. Elkészült a kép?</h2>
+        <input type="file" name="image" (change)="handleImageChange($event)">
+
+        <h2>Mikor sikerült?</h2>
+        <input type="date" name="date" (change)="handleDateChange($event)">
+
+        <button id="cancel" (click)="closeAddTour()">Mégse</button>
+        <button class="save" type="submit">Kész</button>
+    </form>
+</div>

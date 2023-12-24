@@ -1,0 +1,27 @@
+<div class="wrapper" *ngIf="!isOpened">
+    <div class="card" *ngFor="let x of groupSequence; index as i" (click)="getGroup(x.GroupID)">
+        <img src="assets/img/{{x.Groupimage}}" alt="">
+        <p>{{x.Groupname}}</p>
+        <p class="score">{{i+1}}</p>
+    </div>
+</div>
+
+<div class="group" *ngIf="isOpened">
+    <button class="close" (click)="closeGroup()">Vissza</button>
+    <img src="assets/img/{{group.Groupimage}}" alt="{{group.Groupname}}">
+   <div class="container">
+       <div class="names">
+            <h2 class="groupname">{{group.Groupname}}</h2>
+            <h2>{{points}} pont</h2>
+            <h3>Tagok:</h3>
+            <p *ngFor="let x of names">{{x.Name}}</p>
+        </div>
+
+        <ul class="tour">
+            <li *ngFor="let x of groupPoints"><h4>{{x.Destinationname}}: {{x.points}} pont</h4> <img src="assets/tours/{{x.Tourimage}}" alt="{{x.Destinationname}}"> <p>{{x.Date | date: 'YYYY. MM. dd.'}}</p></li>
+            <li *ngIf="groupPoints.length == 0">Még nem teljesített semmit a csapat.</li>
+            
+        </ul>
+   </div>
+    
+</div>
