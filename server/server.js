@@ -23,10 +23,11 @@ app.use(cors({
  }))
 
 con.connect((err) => {
-    if(err) {
-        throw err
+    if (err) {
+        console.error("MySQL Connection Error:", err);
+        process.exit(1); // Kilépés a hibakód 1-gyel
     } else {
-        console.log("Mysql Connected!")
+        console.log("MySQL Connected!");
     }
 })
 
