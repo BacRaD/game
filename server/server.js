@@ -179,7 +179,7 @@ app.get("/grouppoints", verifyToken, (req, res) => {
 
 app.get("/peoplespoints", verifyToken, (req, res) => {
   const sql = `
-    SELECT p.PeopleID, p.Name, COUNT(t.TourID) AS count, IF (SUM(t.Pointvalue) IS NULL, 0, SUM(t.Pointvalue)) as point FROM tours t INNER JOIN tourspeople tp ON t.TourID = tp.TourID RIGHT JOIN people p ON tp.PeopleID = P.PeopleID GROUP BY p.PeopleID ORDER BY point DESC; `;
+    SELECT p.PeopleID, p.Name, COUNT(t.TourID) AS count, IF (SUM(t.Pointvalue) IS NULL, 0, SUM(t.Pointvalue)) as point FROM tours t INNER JOIN tourspeople tp ON t.TourID = tp.TourID RIGHT JOIN people p ON tp.PeopleID = p.PeopleID GROUP BY p.PeopleID ORDER BY point DESC; `;
   con.query(sql, (err, result) => {
     if (err) throw err;
     res.send(result);
