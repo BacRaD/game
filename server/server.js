@@ -170,18 +170,7 @@ app.get("/destinationimages/:id", (req, res) => {
 app.get("/grouppoints", verifyToken, (req, res) => {
   const sql = `
     SELECT
-        d.Destinationname, t.Tourimage, t.Date, g.GroupID AS ID, t.Pointvalue*SUM(point.multiplier) AS points FROM tours t  INNER JOIN tourspeople tp ON t.TourID = tp.TourID INNER JOIN people p ON p.PeopleID = tp.PeopleID INNER JOIN groups g ON p.GroupID = g.GroupID INNER JOIN destination d ON d.DestinationID = t.DestinationID
-    INNER JOIN (
-        SELECT
-        g.GroupID AS GroupID,
-        1/(COUNT(p.PeopleID)) AS multiplier
-    FROM
-        groups g
-    INNER JOIN people p ON g.GroupID = p.GroupID
-    GROUP BY p.GroupID
-    ) AS point ON p.GroupID = point.GroupID
-    GROUP BY
-        t.TourID, p.GroupID;`;
+        d.Destinationname, t.Tourimage, t.Date, g.GroupID AS ID, t.Pointvalue*SUM(point.multiplier) AS points FROM tours t  INNER JOIN tourspeople tp ON t.TourID = tp.TourID INNER JOIN people p ON p.PeopleID = tp.PeopleID INNER JOIN groups g ON p.GroupID = g.GroupID INNER JOIN destination d ON d.DestinationID = t.DestinationID INNER JOIN ( SELECT g.GroupID AS GroupID, 1/(COUNT(p.PeopleID)) AS multiplier FROM groups g INNER JOIN people p ON g.GroupID = p.GroupID GROUP BY p.GroupID ) AS point ON p.GroupID = point.GroupID GROUP BY t.TourID, p.GroupID;`;
 
   con.query(sql, (err, result) => {
     if (err) throw err;
@@ -191,18 +180,7 @@ app.get("/grouppoints", verifyToken, (req, res) => {
 
 app.get("/peoplespoints", verifyToken, (req, res) => {
   const sql = `
-    SELECT
-        p.PeopleID,
-        p.Name,
-        COUNT(t.TourID) AS count,
-        IF (SUM(t.Pointvalue) IS NULL, 0, SUM(t.Pointvalue)) as point
-    FROM
-        tours t
-    INNER JOIN tourspeople tp ON t.TourID = tp.TourID
-    RIGHT JOIN people p ON tp.PeopleID = P.PeopleID
-    GROUP BY p.PeopleID
-    ORDER BY point DESC;
-    `;
+    SELECT p.PeopleID, p.Name, COUNT(t.TourID) AS count, IF (SUM(t.Pointvalue) IS NULL, 0, SUM(t.Pointvalue)) as point FROM tours t INNER JOIN tourspeople tp ON t.TourID = tp.TourID RIGHT JOIN people p ON tp.PeopleID = P.PeopleID GROUP BY p.PeopleID ORDER BY point DESC; `;
   con.query(sql, (err, result) => {
     if (err) throw err;
     res.send(result);
