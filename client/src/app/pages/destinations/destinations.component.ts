@@ -11,6 +11,8 @@ export class DestinationsComponent {
 
   destinations: Destination[] = []
   isOpened: boolean = false
+  ismapOpened:boolean = true
+  map: any = null
 
   constructor(public tours: ToursService) {
     this.getDestinations()
@@ -46,3 +48,5 @@ export class DestinationsComponent {
     this.tours.destination = new Destination()
   }
 }
+
+//  <iframe class="map" src= width="640" height="480"></iframe>

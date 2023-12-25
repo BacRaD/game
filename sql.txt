@@ -1,0 +1,1 @@
+DELETE t.*, tp.* FROM tours t INNER JOIN tourspeople tp ON t.TourID = tp.TourID WHERE t.TourID = n;

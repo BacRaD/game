@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Destination } from 'src/app/model/destiantion';
 import { People } from 'src/app/model/people';
 import { Tours } from 'src/app/model/tours';
@@ -16,8 +17,9 @@ export class HomeComponent {
   peoples: People[] = []
   peoplesResult: People[] = []
   currentTour: Tours = new Tours()
+  isLoading: boolean = false
 
-  constructor(public tour: ToursService) {
+  constructor(public tour: ToursService, private router: Router) {
   }
 
   handleDestinationChange(event: any) {
@@ -33,6 +35,7 @@ export class HomeComponent {
   }
 
   createTour() {
+    this.isLoading = true
     if(this.currentTour.date == "") {
       alert("Mikor teljesítettétek?")
       return
@@ -67,7 +70,9 @@ export class HomeComponent {
     })
     .then(() => {
       this.isOpened = false
+      this.isLoading = false
       this.currentTour = new Tours()
+      this.router.navigate(['/groups'])
     })
   }
 

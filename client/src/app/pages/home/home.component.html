@@ -4,7 +4,7 @@
 </div>
 
 <div class="add-tours" *ngIf="isOpened" (submit)="createTour()">
-    <form action="">
+    <form action="" *ngIf="!isLoading">
         <h2>1. Mi volt a célpont?</h2>
         <select name="tour" (change)="handleDestinationChange($event)">
             <option  *ngFor="let x of tour.destinations" value="{{x.DestinationID}}">{{x.Destinationname}}</option>
@@ -32,4 +32,5 @@
         <button id="cancel" (click)="closeAddTour()">Mégse</button>
         <button class="save" type="submit">Kész</button>
     </form>
+    <img *ngIf="isLoading" class="spinner" src="assets/img/spinner.svg" alt="">
 </div>
